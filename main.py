@@ -249,7 +249,8 @@ class App(ctk.CTk):
         self.player.play()
         # python-vlc: the volume is only applied once playback has started
         self.after(600, lambda: self.apply_volume(token))
-        self.after(2000, lambda: self.check_state(token, o, os.path.getsize(path)))
+        size = os.path.getsize(path)
+        self.after(2000, lambda: self.check_state(token, o, size))
 
     def apply_volume(self, token):
         if token == self.token and self.player:
